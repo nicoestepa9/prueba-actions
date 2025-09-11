@@ -22,5 +22,13 @@ jobs:
       - name: Instalar dependencias
         run: npm install
       
+      - name: Run SonarQube Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: npx sonar-scanner \
+          -Dsonar.projectKey=nicoestepa9_prueba-actions \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${SONAR_TOKEN}
+
       - name: Hello world
         run: echo "Pipeline ejecutado"
