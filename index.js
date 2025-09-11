@@ -51,9 +51,13 @@ app.listen(PORT, () => {
  *               example: Hello World!
  */
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.status(200).json({ message: "Hola Mundo" });
 }
 );
+
+app.get('/test', (req, res) => {
+    res.status(200).json({ message: "Test endpoint" });
+});
 
 
 /**
@@ -299,3 +303,5 @@ app.delete('/clubs/:id', async (req, res) => {
         res.status(500).json({ error: 'Error deleting club' });
     }
 });
+
+module.exports = app;
