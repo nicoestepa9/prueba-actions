@@ -22,5 +22,15 @@ jobs:
       - name: Instalar dependencias
         run: npm install
     
+      - name: SonarCloud Scan - Backend
+        uses: sonarsource/sonarcloud-github-action@v2
+        with:
+          projectKey: nicoestepa9_prueba-actions   
+          organization: nicoestepa9
+          projectBaseDir: ./
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.S_GITHUB_TOKEN }}
+
       - name: Hello world
         run: echo "Pipeline ejecutado"
