@@ -51,7 +51,7 @@ app.listen(PORT, () => {
  *               example: Hello World!
  */
 app.get('/', (req, res) => {
-    res.status(200).json({ message: "Hola Mundo" });
+    res.status(200).json({ message: "Hola, estupidos" });
 }
 );
 
