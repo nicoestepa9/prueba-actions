@@ -20,18 +20,12 @@ jobs:
       - name: Instalar dependencias
         run: npm install
       
-      - name: SonarCloud Scan - Backend
-        uses: sonarsource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: ./
-          args: >
-            -Dsonar.organization=nicoestepa9
-            -Dsonar.projectKey=nicoestepa9_prueba-actions
-            -Dsonar.sources=.
-            -Dsonar.host.url=https://sonarcloud.io
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.S_GITHUB_TOKEN }}
-
-      - name: Hello world
-        run: echo "Pipeline ejecutado"
+  deploy:
+    runs-on: ubuntu-latest
+    container: ghcr.io/railwayapp/cli:latest
+    env:
+      SVC_ID: ccbdfba4-6580-4cf7-bee4-ebc13c268ad4
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: railway up --service=${{ env.SVC_ID }}
